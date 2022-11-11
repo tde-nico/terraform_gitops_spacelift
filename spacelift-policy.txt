@@ -1,0 +1,7 @@
+package spacelift
+
+deny[sprintf("%q Denied!", [resource.address])] {
+	resource := input.terraform.resource_changes[_]
+	instance := resource.change.after.instance_type
+	instance != sanitized("t2.micro")
+}
